@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { GameBoardRoutingModule } from './game-board-routing.module';
 import { GameBoardComponent } from './game-board.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { GameBoardComponent } from './game-board.component';
   ],
   imports: [
     CommonModule,
-    GameBoardRoutingModule
+    GameBoardRoutingModule,
+    SharedModule
   ]
 })
 export class GameBoardModule { }

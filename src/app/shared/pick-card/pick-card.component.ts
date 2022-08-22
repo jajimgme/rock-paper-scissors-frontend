@@ -12,6 +12,7 @@ export class PickCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("this.gamePick")
   }
 
   cardClicked(){

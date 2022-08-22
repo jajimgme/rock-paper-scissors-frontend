@@ -3,5 +3,5 @@ import { GamePick } from "./game-pick";
 
 
 export class RockPaperScissorsGameDescription extends GameDescription {
-    availabePicks: GamePick[] = [];
+    availablePicks: GamePick[] = [];
 }

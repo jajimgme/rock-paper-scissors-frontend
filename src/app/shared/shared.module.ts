@@ -10,6 +10,7 @@ import { PickCardComponent } from './pick-card/pick-card.component';
   ],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [PickCardComponent]
 })
 export class SharedModule { }

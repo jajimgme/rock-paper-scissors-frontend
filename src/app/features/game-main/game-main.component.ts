@@ -26,7 +26,7 @@ export class GameMainComponent implements OnInit {
   if(g.gameType.id === ImplementedGames.ROCK_PAPER_SCISSORS){
     this.game = g;
     this.rockPaperScissorsService.game_url = g.playingEndpoint;
-    this.rockPaperScissorsService.getGameDescription(g.gameType).subscribe(res => this.router.navigate(["/game-board"], {relativeTo: this.route,  state: res}) )
+    this.rockPaperScissorsService.getGameDescription(g.gameType).subscribe(res => this.router.navigate(["/game-board"], {relativeTo: this.route,  state: {selectedGame: res} }) )
     
   }
   }
