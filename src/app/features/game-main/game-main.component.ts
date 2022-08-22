@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GameService } from 'src/app/core/core/services/game.service';
+import { GameService } from 'src/app/core/services/game.service';
+import { RockPaperScissorsService } from 'src/app/core/services/rock-paper-scissors.service';
 import { GameDescription } from 'src/app/shared/entities/game-description';
+import { ImplementedGames } from 'src/app/shared/entities/implemented-games';
 
 @Component({
   selector: 'app-game-main',
@@ -10,12 +12,19 @@ import { GameDescription } from 'src/app/shared/entities/game-description';
 export class GameMainComponent implements OnInit {
   games: GameDescription[] = [];
 
-  constructor(private gameService: GameService) { }
+  constructor(private gameService: GameService, private rockPaperScissorsService: RockPaperScissorsService) { }
 
   ngOnInit(): void {
     this.gameService.getGames().subscribe(t=> {
-      this.games = t
-      console.log(this.games[0].descriptionOfTheRules)})
+      this.games = t;
+  })
+}
+
+  gameSelected(g: GameDescription){
+  if(g.gameType.id === ImplementedGames.ROCK_PAPER_SCISSORS){
+    this.rockPaperScissorsService.game_url = g.playingEndpoint;
+    this.rockPaperScissorsService.getGameDescription(g.gameType).subscribe(res => console.log(res))
+  }
   }
 
 }

@@ -8,8 +8,8 @@
         <div ngbDropdown class="d-inline-block">
             <button class="btn btn-outline-primary" (click)="$event.stopPropagation()" id="dropdownBasic1" ngbDropdownToggle>Available Games</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <div *ngFor="let g of games">
-                    <button ngbDropdownItem>{{g.descriptionOfTheRules}}</button>
+                <div *ngFor="let g of games" (click)="gameSelected(g)">
+                    <button ngbDropdownItem >{{g.descriptionOfTheRules}}</button>
                 </div>
             </div>
         </div>
