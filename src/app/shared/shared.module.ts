@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PickCardComponent } from './pick-card/pick-card.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PickCardComponent
+  ],
   imports: [
     CommonModule
   ]
