@@ -1,13 +1,38 @@
 <div class="row" >
     <h2>Pick One Option</h2>
 <div class="col" *ngFor="let p of selectedGame?.availablePicks">
-    <app-pick-card [gamePick]=p (gamePickSelected)="selectedPick(p)"></app-pick-card>
+    <app-pick-card [gamePick]=p (gamePickSelected)="selectedPick(p)" [showButton]="!isPickSelected" [removeHighlight]="showHighlight"></app-pick-card>
 </div>
+</div>
+<div class="row" *ngIf="machinePick">
+    <div class="row">
+        <div class="col">
+            <h3> The machine pick was: </h3>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        
+        <div class="col-4 align-self-center">
+            <app-pick-card [gamePick]="machinePick" [showButton]="false"></app-pick-card>
+        </div>
+    </div>
+
 </div>
 
 <div class="row" *ngIf="gameResult">
-<div class="col">
-    <h2> {{getGameResultGreeting()}}</h2>
-    <p>Try again!</p>
-</div>
+    <div class="row">
+        <div class="col">
+            <h2> {{getGameResultGreeting()}}</h2>
+            <p>Try again!</p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-4 align-self-center text-center">
+            <button class="btn btn-secondary" 
+            (click)="playAgain()">Play Again
+        </button>
+        </div>
+    </div>
+
+
 </div>

@@ -21,6 +21,9 @@ export class GameBoardComponent implements OnInit {
   humanPlayer: Player = new Player();
   robotPlayer: Player = new Player();
   gameResult: GameResult | undefined = undefined;
+  machinePick: GamePick | undefined = undefined;
+  isPickSelected = false;
+  showHighlight = true;
   constructor(
     private router: Router,
     private gameService: RockPaperScissorsService
@@ -50,33 +53,42 @@ export class GameBoardComponent implements OnInit {
 
   selectedPick(pick: GamePick) {
     this.gameResult = undefined;
+    this.machinePick = undefined;
+    this.isPickSelected = true;
+    this.showHighlight = true;
     const humanPick = this.createPick(pick, this.humanPlayer);
     if (this.selectedGame)
       this.gameService
         .getAiPick(this.selectedGame?.gameType)
-        .subscribe((machinePick) =>{
-        console.log(machinePick);
-          this.gameService.play(
-            this.createPlay(
-              humanPick,
-              this.createPick(machinePick, this.robotPlayer)
+        .subscribe((machinePick) => {
+          this.machinePick = machinePick;
+          this.gameService
+            .play(
+              this.createPlay(
+                humanPick,
+                this.createPick(machinePick, this.robotPlayer)
+              )
             )
-          ).subscribe(gameResult => this.gameResult = gameResult);
-        }
-        );
+            .subscribe((gameResult) => (this.gameResult = gameResult));
+        });
   }
-  getGameResultGreeting():string{
-    if(!this.gameResult)return '';
-    if(this.gameResult.gameResultType === GameResultType.PLAYER_WINS){
-      if(this.gameResult.winner?.playerType === this.humanPlayer.playerType){
-        return "Congratulations you win!";
-
+  getGameResultGreeting(): string {
+    if (!this.gameResult) return '';
+    if (this.gameResult.gameResultType === GameResultType.PLAYER_WINS) {
+      if (this.gameResult.winner?.playerType === this.humanPlayer.playerType) {
+        return 'Congratulations you win!';
       } else {
-          return "You Lose!";
-
+        return 'You Lose!';
       }
     }
-    return `It's a tie!`; 
+    return `It's a tie!`;
+  }
+
+  playAgain(){
+    this.gameResult = undefined;
+    this.machinePick = undefined;
+    this.isPickSelected = false;
+    this.showHighlight = false;
   }
 
   private createPick(g: GamePick, p: Player): Pick {
