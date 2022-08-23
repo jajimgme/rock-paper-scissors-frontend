@@ -1,5 +1,4 @@
-import { Pick } from "./pick";
+import { Pick } from './pick';
 export class Play {
-    picks: Pick[] = [];
+  picks: Pick[] = [];
 }
-

@@ -1,4 +1,4 @@
 export class GameType {
-    id = 0;
-    name = '';
+  id = 0;
+  name = '';
 }

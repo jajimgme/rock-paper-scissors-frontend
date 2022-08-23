@@ -10,10 +10,9 @@ export class PickCardComponent implements OnInit {
   @Input('gamePick') public gamePick: GamePick | undefined;
   @Output() gamePickSelected = new EventEmitter<GamePick>();
   @Input() public showButton = true;
-  
 
   @Input()
-  public set removeHighlight(value:boolean) {
+  public set removeHighlight(value: boolean) {
     if (!value) {
       this.removeHighlightClass();
     }

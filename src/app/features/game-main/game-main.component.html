@@ -1,24 +1,30 @@
 <div class="row">
-    <div class="col">
-<p>Choose One Of the Available Games</p>
-    </div>
+  <div class="col">
+    <p>Choose one of the games available to play.</p>
+  </div>
 </div>
 <div class="row">
-    <div class="col">
-        <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-primary" (click)="$event.stopPropagation()" id="dropdownBasic1" ngbDropdownToggle>Available Games</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <div *ngFor="let g of games" (click)="gameSelected(g)">
-                    <button ngbDropdownItem >{{g.descriptionOfTheRules}}</button>
-                </div>
-            </div>
+  <div class="col">
+    <div ngbDropdown class="d-inline-block">
+      <button
+        class="btn btn-outline-primary"
+        (click)="$event.stopPropagation()"
+        id="dropdownBasic1"
+        ngbDropdownToggle
+      >
+        Available Games
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <div *ngFor="let g of games" (click)="gameSelected(g)">
+          <button ngbDropdownItem>{{ g.gameType.name }}</button>
         </div>
+      </div>
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col">
-        <router-outlet></router-outlet>
-    </div>
+<div class="row">
+  <div class="col">
+    <router-outlet></router-outlet>
   </div>
-
+</div>

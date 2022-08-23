@@ -46,7 +46,7 @@ export class RockPaperScissorsService {
     }) as Observable<GamePick>;
   }
 
-  public play( p:Play):Observable<GameResult>{
+  public play(p: Play): Observable<GameResult> {
     this.checkUrl();
     const endpoint = this.getEndpointUri('play');
     return this.httpClient.post(endpoint, p) as Observable<GameResult>;

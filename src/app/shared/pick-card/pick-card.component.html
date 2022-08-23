@@ -1,8 +1,8 @@
-<div  [ngClass]="customClass" *ngIf="gamePick">
+<div [ngClass]="customClass" *ngIf="gamePick">
   <div class="card-body">
     <p class="card-text">{{ gamePick.type }}</p>
-    <button class="btn btn-primary" *ngIf="showButton"
-                  (click)="cardClicked()">Choose
-          </button>
+    <button class="btn btn-primary" *ngIf="showButton" (click)="cardClicked()">
+      Choose
+    </button>
   </div>
 </div>

@@ -8,27 +8,37 @@ import { ImplementedGames } from 'src/app/shared/entities/implemented-games';
 @Component({
   selector: 'app-game-main',
   templateUrl: './game-main.component.html',
-  styleUrls: ['./game-main.component.scss']
+  styleUrls: ['./game-main.component.scss'],
 })
 export class GameMainComponent implements OnInit {
   games: GameDescription[] = [];
   game: GameDescription | undefined;
 
-  constructor(private gameService: GameService, private rockPaperScissorsService: RockPaperScissorsService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private gameService: GameService,
+    private rockPaperScissorsService: RockPaperScissorsService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.gameService.getGames().subscribe(t=> {
+    this.gameService.getGames().subscribe((t) => {
       this.games = t;
-  })
-}
-
-  gameSelected(g: GameDescription){
-  if(g.gameType.id === ImplementedGames.ROCK_PAPER_SCISSORS){
-    this.game = g;
-    this.rockPaperScissorsService.game_url = g.playingEndpoint;
-    this.rockPaperScissorsService.getGameDescription(g.gameType).subscribe(res => this.router.navigate(["/game-board"], {relativeTo: this.route,  state: {selectedGame: res} }) )
-    
-  }
+    });
   }
 
+  gameSelected(g: GameDescription) {
+    if (g.gameType.id === ImplementedGames.ROCK_PAPER_SCISSORS) {
+      this.game = g;
+      this.rockPaperScissorsService.game_url = g.playingEndpoint;
+      this.rockPaperScissorsService
+        .getGameDescription(g.gameType)
+        .subscribe((res) =>
+          this.router.navigate(['/game-board'], {
+            relativeTo: this.route,
+            state: { selectedGame: res },
+          })
+        );
+    }
+  }
 }

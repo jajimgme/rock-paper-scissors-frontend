@@ -30,12 +30,13 @@ export class GameBoardComponent implements OnInit {
   ) {
     let extra = router.getCurrentNavigation()?.extras;
     if (extra && extra.state) this.selectedGame = extra.state['selectedGame'];
+    if (!this.selectedGame) {
+      router.navigate(['/']);
+    }
     this.createPlayers();
   }
 
-  ngOnInit(): void {
-    console.log(this.selectedGame);
-  }
+  ngOnInit(): void {}
 
   private createPlayers() {
     let player = new Player();
@@ -84,7 +85,7 @@ export class GameBoardComponent implements OnInit {
     return `It's a tie!`;
   }
 
-  playAgain(){
+  playAgain() {
     this.gameResult = undefined;
     this.machinePick = undefined;
     this.isPickSelected = false;

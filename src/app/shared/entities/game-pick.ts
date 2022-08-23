@@ -1,5 +1,4 @@
-
 export class GamePick {
-    type: string = '';
-    defeats: string[] = [];
+  type: string = '';
+  defeats: string[] = [];
 }
