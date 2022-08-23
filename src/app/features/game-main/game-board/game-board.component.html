@@ -1,6 +1,13 @@
-<p>game-board works!</p>
 <div class="row" >
+    <h2>Pick One Option</h2>
 <div class="col" *ngFor="let p of selectedGame?.availablePicks">
     <app-pick-card [gamePick]=p (gamePickSelected)="selectedPick(p)"></app-pick-card>
+</div>
+</div>
+
+<div class="row" *ngIf="gameResult">
+<div class="col">
+    <h2> {{getGameResultGreeting()}}</h2>
+    <p>Try again!</p>
 </div>
 </div>

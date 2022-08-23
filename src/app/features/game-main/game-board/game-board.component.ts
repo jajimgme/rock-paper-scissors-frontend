@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { RockPaperScissorsService } from 'src/app/core/services/rock-paper-scissors.service';
 import { GameDescription } from 'src/app/shared/entities/game-description';
 import { GamePick } from 'src/app/shared/entities/game-pick';
+import { GameResult } from 'src/app/shared/entities/game-result';
+import { GameResultType } from 'src/app/shared/entities/game-result-type';
 import { Pick } from 'src/app/shared/entities/pick';
 import { Play } from 'src/app/shared/entities/play';
 import { Player } from 'src/app/shared/entities/player';
@@ -18,6 +20,7 @@ export class GameBoardComponent implements OnInit {
   selectedGame: RockPaperScissorsGameDescription | undefined;
   humanPlayer: Player = new Player();
   robotPlayer: Player = new Player();
+  gameResult: GameResult | undefined = undefined;
   constructor(
     private router: Router,
     private gameService: RockPaperScissorsService
@@ -46,6 +49,7 @@ export class GameBoardComponent implements OnInit {
   }
 
   selectedPick(pick: GamePick) {
+    this.gameResult = undefined;
     const humanPick = this.createPick(pick, this.humanPlayer);
     if (this.selectedGame)
       this.gameService
@@ -57,9 +61,22 @@ export class GameBoardComponent implements OnInit {
               humanPick,
               this.createPick(machinePick, this.robotPlayer)
             )
-          ).subscribe(gameResult => console.log);
+          ).subscribe(gameResult => this.gameResult = gameResult);
         }
         );
+  }
+  getGameResultGreeting():string{
+    if(!this.gameResult)return '';
+    if(this.gameResult.gameResultType === GameResultType.PLAYER_WINS){
+      if(this.gameResult.winner?.playerType === this.humanPlayer.playerType){
+        return "Congratulations you win!";
+
+      } else {
+          return "You Lose!";
+
+      }
+    }
+    return `It's a tie!`; 
   }
 
   private createPick(g: GamePick, p: Player): Pick {
