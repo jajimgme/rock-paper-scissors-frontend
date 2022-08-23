@@ -12,10 +12,10 @@ export class PickCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("this.gamePick")
   }
 
   cardClicked(){
+    console.log(this.gamePick)
     this.gamePickSelected.emit(this.gamePick);
   }
 

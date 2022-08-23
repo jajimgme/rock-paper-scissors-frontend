@@ -1,6 +1,6 @@
 <p>game-board works!</p>
 <div class="row" >
 <div class="col" *ngFor="let p of selectedGame?.availablePicks">
-    <app-pick-card [gamePick]=p></app-pick-card>
+    <app-pick-card [gamePick]=p (gamePickSelected)="selectedPick(p)"></app-pick-card>
 </div>
 </div>

@@ -1,6 +1,9 @@
-<div class="card" *ngIf="gamePick" onclick="cardClicked">
+<div class="card" *ngIf="gamePick">
   <div class="card-body">
-    <h5 class="card-title">Pick</h5>
+    <!-- <h5 class="card-title">Pick</h5> -->
     <p class="card-text">{{ gamePick.type }}</p>
+    <button class="btn btn-primary"
+                  (click)="cardClicked()">Choose
+          </button>
   </div>
 </div>

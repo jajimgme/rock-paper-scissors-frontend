@@ -34,7 +34,7 @@ export class RockPaperScissorsService {
   }
 
   private getEndpointUri(path: string) {
-    return new URL(`${this._game_url}${path}}`, this.baseEndpoint).href;
+    return new URL(`${this._game_url}${path}`, this.baseEndpoint).href;
   }
 
   public getAiPick(gameType: GameType): Observable<GamePick> {
@@ -46,7 +46,7 @@ export class RockPaperScissorsService {
     }) as Observable<GamePick>;
   }
 
-  public play( p:Play):GameResult{
+  public play( p:Play):Observable<GameResult>{
     this.checkUrl();
     const endpoint = this.getEndpointUri('play');
     return this.httpClient.post(endpoint, p) as Observable<GameResult>;
