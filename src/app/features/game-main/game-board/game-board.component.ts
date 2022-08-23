@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RockPaperScissorsService } from 'src/app/core/services/rock-paper-scissors.service';
-import { GameDescription } from 'src/app/shared/entities/game-description';
 import { GamePick } from 'src/app/shared/entities/game-pick';
 import { GameResult } from 'src/app/shared/entities/game-result';
 import { GameResultType } from 'src/app/shared/entities/game-result-type';
@@ -53,6 +52,7 @@ export class GameBoardComponent implements OnInit {
   }
 
   selectedPick(pick: GamePick) {
+    
     this.gameResult = undefined;
     this.machinePick = undefined;
     this.isPickSelected = true;
